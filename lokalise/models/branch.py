@@ -1,21 +1,22 @@
-"""
+u"""
 lokalise.models.branch
 ~~~~~~~~~~~~~~~~~~~~~~
 Module containing branch model.
 """
+from __future__ import absolute_import
 from .base_model import BaseModel
 
 
 class BranchModel(BaseModel):
-    """Describes project branch model.
+    u"""Describes project branch model.
     """
-    DATA_KEY = 'branch'
+    DATA_KEY = u'branch'
 
     ATTRS = [
-        'branch_id',
-        'name',
-        'created_at',
-        'created_at_timestamp',
-        'created_by',
-        'created_by_email'
+        u'branch_id',
+        u'name',
+        u'created_at',
+        u'created_at_timestamp',
+        u'created_by',
+        u'created_by_email'
     ]

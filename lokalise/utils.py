@@ -1,20 +1,21 @@
-"""
+u"""
 lokalise.utils
 ~~~~~~~~~~~~~~
 This module contains various utility functions.
 """
+from __future__ import absolute_import
 from typing import List, Any
 
 
-def snake_to_camel(word: str) -> str:
-    """Converts string in snake case to camel case.
+def snake_to_camel(word):
+    u"""Converts string in snake case to camel case.
     For example, "test_string" becomes "TestString"
     """
-    return ''.join(x.capitalize() or '_' for x in word.split('_'))
+    return u''.join(x.capitalize() or u'_' for x in word.split(u'_'))
 
 
-def to_list(obj: Any) -> List:
-    """Converts an object to a list. If the object is already a list,
+def to_list(obj):
+    u"""Converts an object to a list. If the object is already a list,
     does nothing.
 
     :param obj: Object to convert

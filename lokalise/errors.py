@@ -1,92 +1,93 @@
-"""
+u"""
 lokalise.errors
 ~~~~~~~~~~~~~~~
 Defines custom exception classes.
 """
+from __future__ import absolute_import
 from typing import Union
 
 
 class ClientError(Exception):
-    """General exception class.
+    u"""General exception class.
     """
 
-    def __init__(self, msg: str, code: Union[str, int]) -> None:
-        """Initializes a new exception.
+    def __init__(self, msg, code):
+        u"""Initializes a new exception.
 
         :param msg: Exception message
         :param code: Exception code (derived from HTTP status code)
         """
-        super().__init__(msg, code)
+        super(ClientError, self).__init__(msg, code)
         self.message = msg
         self.code = code
 
 
 class BadRequest(ClientError):
-    """The provided request is incorrect,
+    u"""The provided request is incorrect,
     often due to missing a required parameter. HTTP status code 400.
     """
 
 
 class Unauthorized(ClientError):
-    """API token is incorrect. HTTP status code 401.
+    u"""API token is incorrect. HTTP status code 401.
     """
 
 
 class Forbidden(ClientError):
-    """The authenticated user does not have sufficient rights to perform the
+    u"""The authenticated user does not have sufficient rights to perform the
     desired action. HTTP status code 403.
     """
 
 
 class NotFound(ClientError):
-    """The provided endpoint (resource) cannot be found. HTTP status code 404.
+    u"""The provided endpoint (resource) cannot be found. HTTP status code 404.
     """
 
 
 class MethodNowAllowed(ClientError):
-    """HTTP request with the provided verb is not supported by the endpoint.
+    u"""HTTP request with the provided verb is not supported by the endpoint.
     HTTP status code 405.
     """
 
 
 class NotAcceptable(ClientError):
-    """Posted resource is malformed. HTTP status code 406.
+    u"""Posted resource is malformed. HTTP status code 406.
     """
 
 
 class Conflict(ClientError):
-    """Request conflicts with another request. HTTP status code 409.
+    u"""Request conflicts with another request. HTTP status code 409.
     """
 
 
 class Locked(ClientError):
-    """Your token is used simultaneously in multiple requests.
+    u"""Your token is used simultaneously in multiple requests.
     HTTP status code 423.
     """
 
 
 class TooManyRequests(ClientError):
-    """Too many requests hit the API too quickly. HTTP status code 429.
+    u"""Too many requests hit the API too quickly. HTTP status code 429.
     """
 
 
 class ServerError(ClientError):
-    """Server-side error. HTTP status code 500.
+    u"""Server-side error. HTTP status code 500.
     """
 
 
 class BadGateway(ClientError):
-    """Server-side error. HTTP status code 502.
+    u"""Server-side error. HTTP status code 502.
     """
 
 
 class ServiceUnavailable(ClientError):
-    """Server is not available at the moment. HTTP status code 503.
+    u"""Server is not available at the moment. HTTP status code 503.
     """
 
 
 class GatewayTimeout(ClientError):
-    """Server has not responded in a timely fashion. HTTP status code 504.
+    u"""Server has not responded in a timely fashion. HTTP status code 504.
     """
 
 

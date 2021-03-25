@@ -1,8 +1,9 @@
-"""
+u"""
 lokalise.endpoints.base_endpoint
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Endpoint parent class inherited by specific endpoints.
 """
+from __future__ import absolute_import
 from typing import Dict, Optional, Any, Union
 from string import Template
 import lokalise.client
@@ -10,8 +11,8 @@ from lokalise.utils import to_list
 from .. import request
 
 
-class BaseEndpoint:
-    """Abstract base class for API endpoints. Endpoints are used to load
+class BaseEndpoint(object):
+    u"""Abstract base class for API endpoints. Endpoints are used to load
     the actual data.
 
     :attribute PATH: contains the template of the relative URI path to
@@ -24,19 +25,19 @@ class BaseEndpoint:
 
     The actual path is generated using the provided ids.
     """
-    PATH: str = ''
+    PATH = u''
 
-    def __init__(self, client: lokalise.client.Client) -> None:
-        """Creates a new endpoint.
+    def __init__(self, client):
+        u"""Creates a new endpoint.
 
         :param client: Lokalise API client
         :type client: lokalise.client.Client
         """
         self.client = client
 
-    def all(self, params: Optional[Dict[str, Any]] = None,
-            **ids: Optional[Union[str, int]]) -> Dict:
-        """Loads all items for the given endpoint
+    def all(self, params = None,
+            **ids):
+        u"""Loads all items for the given endpoint
         (all projects, all contributors etc).
 
         :param dict params: Other request parameters like "page" or "limit"
@@ -46,9 +47,9 @@ class BaseEndpoint:
         path = self.path_with_params(**ids)
         return request.get(self.client, path, params)
 
-    def find(self, params: Optional[Dict[str, Any]] = None,
-             **ids: Optional[Union[str, int]]) -> Dict:
-        """Loads an item for the given endpoint
+    def find(self, params = None,
+             **ids):
+        u"""Loads an item for the given endpoint
         (one project, one contributor etc).
 
         :param dict params: Other request parameters
@@ -58,10 +59,10 @@ class BaseEndpoint:
         path = self.path_with_params(**ids)
         return request.get(self.client, path, params)
 
-    def create(self, params: Optional[Dict] = None,
-               wrapper_attr: Optional[str] = None,
-               **ids: Optional[Union[str, int]]) -> Dict:
-        """Creates a new resource for the given endpoint.
+    def create(self, params = None,
+               wrapper_attr = None,
+               **ids):
+        u"""Creates a new resource for the given endpoint.
 
         :param dict params: Resource parameters
         :param str wrapper_attr: Attribute to wrap the params into. For example:
@@ -78,10 +79,10 @@ class BaseEndpoint:
         path = self.path_with_params(**ids)
         return request.post(self.client, path, params)
 
-    def update(self, params: Dict,
-               wrapper_attr: Optional[str] = None,
-               **ids: Optional[Union[str, int]]) -> Dict:
-        """Updates a resource for the given endpoint.
+    def update(self, params,
+               wrapper_attr = None,
+               **ids):
+        u"""Updates a resource for the given endpoint.
 
         :param dict params: Resource parameters
         :param str wrapper_attr: Attribute to wrap the params into
@@ -93,10 +94,10 @@ class BaseEndpoint:
         path = self.path_with_params(**ids)
         return request.put(self.client, path, params)
 
-    def delete(self, params: Optional[Dict] = None,
-               wrapper_attr: Optional[str] = None,
-               **ids: Optional[Union[str, int]]) -> Dict:
-        """Deletes a resource for the given endpoint.
+    def delete(self, params = None,
+               wrapper_attr = None,
+               **ids):
+        u"""Deletes a resource for the given endpoint.
 
         :param dict params: Request parameters
         :param str wrapper_attr: Attribute to wrap the params into
@@ -108,10 +109,10 @@ class BaseEndpoint:
         path = self.path_with_params(**ids)
         return request.delete(self.client, path, params)
 
-    def path_with_params(self, **ids: Optional[Union[str, int]]) -> str:
-        """Generates relative path to the endpoint using the template stored
+    def path_with_params(self, **ids):
+        u"""Generates relative path to the endpoint using the template stored
         in PATH and the provided ids. Some or all ids may be omitted depending
         on the actual endpoint.
         """
-        defaults = dict(parent_id='', resource_id='', subresource_id='')
+        defaults = dict(parent_id=u'', resource_id=u'', subresource_id=u'')
         return Template(self.PATH).substitute(defaults, **ids)

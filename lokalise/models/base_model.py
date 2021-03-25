@@ -1,13 +1,14 @@
-"""
+u"""
 lokalise.models.base_model
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 Model parent class inherited by specific models.
 """
+from __future__ import absolute_import
 from typing import List, Dict
 
 
-class BaseModel:
-    """Abstract base class for model objects.
+class BaseModel(object):
+    u"""Abstract base class for model objects.
 
     :attribute ATTRS: list of attributes a resource contains. For example, a project
     has a name, a description, and an ID.
@@ -19,17 +20,17 @@ class BaseModel:
     {"project_id": "abc", contributor: {"user_id": 1}}
     In this case, the DATA_KEY would be "contributor"
     """
-    ATTRS: List[str] = []
-    COMMON_ATTRS: List[str] = [
-        'project_id',
-        'user_id',
-        'branch',
-        'team_id'
+    ATTRS = []
+    COMMON_ATTRS = [
+        u'project_id',
+        u'user_id',
+        u'branch',
+        u'team_id'
     ]
-    DATA_KEY: str = ''
+    DATA_KEY = u''
 
-    def __init__(self, raw_data: Dict) -> None:
-        """Creates a new model.
+    def __init__(self, raw_data):
+        u"""Creates a new model.
         A model describes a single resource, for example a project or a contributor.
         To read raw data returned by the API, use the `raw_data` attribute.
 
@@ -60,19 +61,19 @@ class BaseModel:
         for attr in self.ATTRS:
             setattr(self, attr, data.get(attr, None))
 
-    def __str__(self) -> str:
-        """Converts a model to string
+    def __str__(self):
+        u"""Converts a model to string
         """
-        result = ""
+        result = u""
         for attr in self.ATTRS:
             if len(result) != 0:
-                result += "\n"
-            result += f"{attr}: {getattr(self, attr)}"
+                result += u"\n"
+            result += u"{attr}: {getattr(self, attr)}".format(attr=attr)
 
         return result
 
-    def __extract_common_attrs(self, raw_data: Dict) -> None:
-        """Fetches common data from the response and sets the
+    def __extract_common_attrs(self, raw_data):
+        u"""Fetches common data from the response and sets the
         corresponding attributes. If the same attribute is present in model-specific
         attribute list, it has higher priority.
         """
