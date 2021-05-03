@@ -38,7 +38,7 @@ from .collections.keys import KeysCollection
 # from .models.queued_process import QueuedProcessModel
 # from .models.snapshot import SnapshotModel
 # from .models.screenshot import ScreenshotModel
-# from .models.task import TaskModel
+from .models.task import TaskModel
 # from .models.team_user import TeamUserModel
 # from .models.team_user_group import TeamUserGroupModel
 # from .models.translation import TranslationModel
@@ -905,17 +905,17 @@ class Client(object):
             # find(parent_id=project_id, resource_id=task_id)
         # return TaskModel(raw_task)
 
-    # def create_task(self, project_id,
-                    # params):
-        # u"""Creates a task in the given project.
+    def create_task(self, project_id,
+                    params):
+        u"""Creates a task in the given project.
 
-        # :param str project_id: ID of the project
-        # :param dict params: Task parameters
-        # :return: Task model
-        # """
-        # raw_task = self.get_endpoint(u"tasks"). \
-            # create(params=params, parent_id=project_id)
-        # return TaskModel(raw_task)
+        :param str project_id: ID of the project
+        :param dict params: Task parameters
+        :return: Task model
+        """
+        raw_task = self.get_endpoint(u"tasks"). \
+            create(params=params, parent_id=project_id)
+        return TaskModel(raw_task)
 
     # def update_task(self,
                     # project_id,
