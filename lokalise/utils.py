@@ -4,8 +4,6 @@ lokalise.utils
 This module contains various utility functions.
 """
 from __future__ import absolute_import
-from typing import List, Any
-
 
 def snake_to_camel(word):
     u"""Converts string in snake case to camel case.

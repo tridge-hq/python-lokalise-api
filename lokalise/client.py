@@ -4,19 +4,18 @@ lokalise.client
 This module contains API client definition.
 """
 from __future__ import absolute_import
-from typing import Any, Optional, Union, Dict, Callable, List
 import importlib
-from lokalise.utils import snake_to_camel
+from .utils import snake_to_camel
 # from .collections.branches import BranchesCollection
 # from .collections.comments import CommentsCollection
 # from .collections.contributors import ContributorsCollection
-# from .collections.files import FilesCollection
+from .collections.files import FilesCollection
 from .collections.keys import KeysCollection
 # from .collections.languages import LanguagesCollection
 # from .collections.orders import OrdersCollection
 # from .collections.payment_cards import PaymentCardsCollection
 # from .collections.projects import ProjectsCollection
-# from .collections.queued_processes import QueuedProcessesCollection
+from .collections.queued_processes import QueuedProcessesCollection
 # from .collections.snapshots import SnapshotsCollection
 # from .collections.screenshots import ScreenshotsCollection
 # from .collections.tasks import TasksCollection
@@ -35,7 +34,7 @@ from .collections.keys import KeysCollection
 # from .models.order import OrderModel
 # from .models.payment_card import PaymentCardModel
 # from .models.project import ProjectModel
-# from .models.queued_process import QueuedProcessModel
+from .models.queued_process import QueuedProcessModel
 # from .models.snapshot import SnapshotModel
 # from .models.screenshot import ScreenshotModel
 from .models.task import TaskModel
@@ -351,43 +350,43 @@ class Client(object):
             # delete(parent_id=project_id, resource_id=contributor_id)
         # return response
 
-    # def files(self,
-              # project_id,
-              # params = None
-              # ):
-        # u"""Fetches all files for the given project.
+    def files(self,
+              project_id,
+              params = None
+              ):
+        u"""Fetches all files for the given project.
 
-        # :param str project_id: ID of the project to fetch files for.
-        # :param dict params: (optional) Pagination params
-        # :return: Collection of files
-        # """
-        # raw_files = self.get_endpoint(u"files"). \
-            # all(parent_id=project_id, params=params)
-        # return FilesCollection(raw_files)
+        :param str project_id: ID of the project to fetch files for.
+        :param dict params: (optional) Pagination params
+        :return: Collection of files
+        """
+        raw_files = self.get_endpoint(u"files"). \
+            all(parent_id=project_id, params=params)
+        return FilesCollection(raw_files)
 
-    # def upload_file(self, project_id,
-                    # params):
-        # u"""Uploads a file to the given project.
+    def upload_file(self, project_id,
+                    params):
+        u"""Uploads a file to the given project.
 
-        # :param str project_id: ID of the project to upload file to
-        # :param dict params: Upload params
-        # :return: Queued process model
-        # """
-        # raw_process = self.get_endpoint(u"files"). \
-            # upload(params=params, parent_id=project_id)
-        # return QueuedProcessModel(raw_process)
+        :param str project_id: ID of the project to upload file to
+        :param dict params: Upload params
+        :return: Queued process model
+        """
+        raw_process = self.get_endpoint(u"files"). \
+            upload(params=params, parent_id=project_id)
+        return QueuedProcessModel(raw_process)
 
-    # def download_files(self, project_id,
-                       # params):
-        # u"""Downloads files from the given project.
+    def download_files(self, project_id,
+                       params):
+        u"""Downloads files from the given project.
 
-        # :param str project_id: ID of the project to download from
-        # :param dict params: Download params
-        # :return: Dictionary with project ID and a bundle URL
-        # """
-        # response = self.get_endpoint(u"files"). \
-            # download(params=params, parent_id=project_id)
-        # return response
+        :param str project_id: ID of the project to download from
+        :param dict params: Download params
+        :return: Dictionary with project ID and a bundle URL
+        """
+        response = self.get_endpoint(u"files"). \
+            download(params=params, parent_id=project_id)
+        return response
 
     def keys(self,
              project_id,
@@ -726,29 +725,29 @@ class Client(object):
         # """
         # return self.get_endpoint(u"projects").delete(parent_id=project_id)
 
-    # def queued_processes(self, project_id):
-        # u"""Fetches all queued processes for the given project.
+    def queued_processes(self, project_id):
+        u"""Fetches all queued processes for the given project.
 
-        # :param str project_id: ID of the project
-        # :return: Collection of queued processes
-        # """
-        # raw_processes = self.get_endpoint(u"queued_processes"). \
-            # all(parent_id=project_id)
-        # return QueuedProcessesCollection(raw_processes)
+        :param str project_id: ID of the project
+        :return: Collection of queued processes
+        """
+        raw_processes = self.get_endpoint(u"queued_processes"). \
+            all(parent_id=project_id)
+        return QueuedProcessesCollection(raw_processes)
 
-    # def queued_process(self,
-                       # project_id,
-                       # queued_process_id):
-        # u"""Fetches a queued process.
+    def queued_process(self,
+                       project_id,
+                       queued_process_id):
+        u"""Fetches a queued process.
 
-        # :param str project_id: ID of the project
-        # :param queued_process_id: ID of the process to fetch
-        # :type queued_process_id: int or str
-        # :return: Queued process model
-        # """
-        # raw_process = self.get_endpoint(u"queued_processes"). \
-            # find(parent_id=project_id, resource_id=queued_process_id)
-        # return QueuedProcessModel(raw_process)
+        :param str project_id: ID of the project
+        :param queued_process_id: ID of the process to fetch
+        :type queued_process_id: int or str
+        :return: Queued process model
+        """
+        raw_process = self.get_endpoint(u"queued_processes"). \
+            find(parent_id=project_id, resource_id=queued_process_id)
+        return QueuedProcessModel(raw_process)
 
     # def snapshots(self, project_id,
                   # params = None):
