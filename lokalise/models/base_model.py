@@ -66,8 +66,8 @@ class BaseModel(object):
         result = u""
         for attr in self.ATTRS:
             if len(result) != 0:
-                result += u"\n"
-            result += u"{attr}: {getattr(self, attr)}".format(attr=attr)
+                result += "\n"
+            result += "{attr}: {getattr(self, attr)}".format(attr=attr)
 
         return result
 
