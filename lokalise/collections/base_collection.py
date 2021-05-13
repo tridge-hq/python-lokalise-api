@@ -4,7 +4,6 @@ lokalise.collections.base_collection
 Collection parent class inherited by specific collections.
 """
 from __future__ import absolute_import
-from typing import Any, Dict, List
 from ..models.base_model import BaseModel
 
 

@@ -1,4 +1,4 @@
-"""
+u"""
 lokalise.collections.files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 Module containing files collection.
@@ -9,7 +9,7 @@ from ..models.file import FileModel
 
 
 class FilesCollection(BaseCollection):
-    """Describes files.
+    u"""Describes files.
     """
-    DATA_KEY = "files"
+    DATA_KEY = u"files"
     MODEL_KLASS = FileModel

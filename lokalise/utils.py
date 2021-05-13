@@ -5,6 +5,7 @@ This module contains various utility functions.
 """
 from __future__ import absolute_import
 
+
 def snake_to_camel(word):
     u"""Converts string in snake case to camel case.
     For example, "test_string" becomes "TestString"
