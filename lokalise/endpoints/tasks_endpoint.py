@@ -3,6 +3,7 @@ lokalise.endpoints.tasks_endpoint
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Module containing tasks endpoint.
 """
+from __future__ import absolute_import
 from .base_endpoint import BaseEndpoint
 
 

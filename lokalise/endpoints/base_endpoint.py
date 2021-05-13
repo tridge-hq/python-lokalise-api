@@ -4,9 +4,7 @@ lokalise.endpoints.base_endpoint
 Endpoint parent class inherited by specific endpoints.
 """
 from __future__ import absolute_import
-from typing import Dict, Optional, Any, Union
 from string import Template
-import lokalise.client
 from lokalise.utils import to_list
 from .. import request
 

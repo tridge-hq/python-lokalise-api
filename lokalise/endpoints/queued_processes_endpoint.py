@@ -4,6 +4,7 @@ lokalise.endpoints.queued_processes_endpoint
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Module containing queued processes endpoint.
 """
+from __future__ import absolute_import
 from .base_endpoint import BaseEndpoint
 
 
