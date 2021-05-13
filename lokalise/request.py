@@ -9,11 +9,9 @@ Attributes:
     :attribute list PAGINATION_HEADERS: list of response headers that contain pagination data.
 """
 from __future__ import absolute_import
-from typing import Any, Optional, Dict, NoReturn
 import json
 import requests
 from lokalise import errors
-import lokalise.client
 from ._version import __version__
 
 

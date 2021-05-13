@@ -4,7 +4,6 @@ lokalise.models.base_model
 Model parent class inherited by specific models.
 """
 from __future__ import absolute_import
-from typing import List, Dict
 
 
 class BaseModel(object):

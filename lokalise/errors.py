@@ -4,7 +4,6 @@ lokalise.errors
 Defines custom exception classes.
 """
 from __future__ import absolute_import
-from typing import Union
 
 
 class ClientError(Exception):
