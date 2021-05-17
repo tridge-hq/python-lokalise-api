@@ -22,9 +22,6 @@ setup(
     keywords=u'lokalise api client',
     license=u'MIT',
     packages=find_packages(exclude=[u'tests*']),
-    package_data={
-        u'lokalise': [u'py.typed'],
-    },
     package_dir={u'lokalise': u'lokalise'},
     platforms=[u'Any'],
     install_requires=[u'requests>2,<3'],
