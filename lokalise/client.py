@@ -18,7 +18,7 @@ from .collections.keys import KeysCollection
 from .collections.queued_processes import QueuedProcessesCollection
 # from .collections.snapshots import SnapshotsCollection
 # from .collections.screenshots import ScreenshotsCollection
-# from .collections.tasks import TasksCollection
+from .collections.tasks import TasksCollection
 # from .collections.teams import TeamsCollection
 # from .collections.team_users import TeamUsersCollection
 # from .collections.team_user_groups import TeamUserGroupsCollection
@@ -878,17 +878,17 @@ class Client(object):
             # delete(parent_id=project_id, resource_id=screenshot_id)
         # return response
 
-    # def tasks(self, project_id,
-              # params = None):
-        # u"""Fetches all tasks for the given project.
+    def tasks(self, project_id,
+              params = None):
+        u"""Fetches all tasks for the given project.
 
-        # :param str project_id: ID of the project
-        # :param dict params: (optional) Request parameters
-        # :return: Collection of tasks
-        # """
-        # raw_tasks = self.get_endpoint(u"tasks"). \
-            # all(params=params, parent_id=project_id)
-        # return TasksCollection(raw_tasks)
+        :param str project_id: ID of the project
+        :param dict params: (optional) Request parameters
+        :return: Collection of tasks
+        """
+        raw_tasks = self.get_endpoint(u"tasks"). \
+            all(params=params, parent_id=project_id)
+        return TasksCollection(raw_tasks)
 
     # def task(self,
              # project_id,
@@ -933,19 +933,19 @@ class Client(object):
             # update(params=params, parent_id=project_id, resource_id=task_id)
         # return TaskModel(raw_task)
 
-    # def delete_task(self,
-                    # project_id,
-                    # task_id):
-        # u"""Deletes a task.
+    def delete_task(self,
+                    project_id,
+                    task_id):
+        u"""Deletes a task.
 
-        # :param str project_id: ID of the project
-        # :param task_id: ID of the task to delete
-        # :type task_id: int or str
-        # :return: Dictionary with the project ID and "task_deleted": True
-        # """
-        # response = self.get_endpoint(u"tasks"). \
-            # delete(parent_id=project_id, resource_id=task_id)
-        # return response
+        :param str project_id: ID of the project
+        :param task_id: ID of the task to delete
+        :type task_id: int or str
+        :return: Dictionary with the project ID and "task_deleted": True
+        """
+        response = self.get_endpoint(u"tasks"). \
+            delete(parent_id=project_id, resource_id=task_id)
+        return response
 
     # def teams(self, params = None):
         # u"""Fetches all teams available to the currently authorized user
