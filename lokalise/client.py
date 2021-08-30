@@ -890,19 +890,19 @@ class Client(object):
             all(params=params, parent_id=project_id)
         return TasksCollection(raw_tasks)
 
-    # def task(self,
-             # project_id,
-             # task_id):
-        # u"""Fetches a task.
+    def task(self,
+             project_id,
+             task_id):
+        u"""Fetches a task.
 
-        # :param str project_id: ID of the project
-        # :param task_id: ID of the task to fetch
-        # :type task_id: int or str
-        # :return: Task model
-        # """
-        # raw_task = self.get_endpoint(u"tasks"). \
-            # find(parent_id=project_id, resource_id=task_id)
-        # return TaskModel(raw_task)
+        :param str project_id: ID of the project
+        :param task_id: ID of the task to fetch
+        :type task_id: int or str
+        :return: Task model
+        """
+        raw_task = self.get_endpoint(u"tasks"). \
+            find(parent_id=project_id, resource_id=task_id)
+        return TaskModel(raw_task)
 
     def create_task(self, project_id,
                     params):
@@ -916,22 +916,22 @@ class Client(object):
             create(params=params, parent_id=project_id)
         return TaskModel(raw_task)
 
-    # def update_task(self,
-                    # project_id,
-                    # task_id,
-                    # params = None
-                    # ):
-        # u"""Updates a task.
+    def update_task(self,
+                    project_id,
+                    task_id,
+                    params = None
+                    ):
+        u"""Updates a task.
 
-        # :param str project_id: ID of the project
-        # :param task_id: ID of the task to update
-        # :type task_id: int or str
-        # :param dict params: Task parameters
-        # :return: Task model
-        # """
-        # raw_task = self.get_endpoint(u"tasks"). \
-            # update(params=params, parent_id=project_id, resource_id=task_id)
-        # return TaskModel(raw_task)
+        :param str project_id: ID of the project
+        :param task_id: ID of the task to update
+        :type task_id: int or str
+        :param dict params: Task parameters
+        :return: Task model
+        """
+        raw_task = self.get_endpoint(u"tasks"). \
+            update(params=params, parent_id=project_id, resource_id=task_id)
+        return TaskModel(raw_task)
 
     def delete_task(self,
                     project_id,
