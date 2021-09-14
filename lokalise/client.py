@@ -6,7 +6,7 @@ This module contains API client definition.
 from __future__ import absolute_import
 import importlib
 from .utils import snake_to_camel
-# from .collections.branches import BranchesCollection
+from .collections.branches import BranchesCollection
 # from .collections.comments import CommentsCollection
 # from .collections.contributors import ContributorsCollection
 from .collections.files import FilesCollection
@@ -26,7 +26,7 @@ from .collections.tasks import TasksCollection
 # from .collections.translation_providers import TranslationProvidersCollection
 # from .collections.translation_statuses import TranslationStatusesCollection
 # from .collections.webhooks import WebhooksCollection
-# from .models.branch import BranchModel
+from .models.branch import BranchModel
 # from .models.comment import CommentModel
 # from .models.contributor import ContributorModel
 # from .models.key import KeyModel
@@ -58,8 +58,8 @@ class Client(object):
 
     def __init__(self,
                  token,
-                 connect_timeout = None,
-                 read_timeout = None):
+                 connect_timeout=None,
+                 read_timeout=None):
         u"""Instantiate a new Lokalise API client.
 
         :param str token: Your Lokalise API token.
@@ -82,34 +82,34 @@ class Client(object):
         # self.read_timeout = None
         # self.__clear_endpoint_attrs()
 
-    # # === Endpoint methods ===
-    # def branches(self,
-                 # project_id,
-                 # params = None
-                 # ):
-        # u"""Fetches all branches for the given project.
+    # === Endpoint methods ===
+    def branches(self,
+                 project_id,
+                 params=None
+                 ):
+        u"""Fetches all branches for the given project.
 
-        # :param str project_id: ID of the project to fetch branches for.
-        # :param dict params: (optional) Pagination params
-        # :return: Collection of branches
-        # """
-        # raw_branches = self.get_endpoint(u"branches"). \
-            # all(parent_id=project_id, params=params)
-        # return BranchesCollection(raw_branches)
+        :param str project_id: ID of the project to fetch branches for.
+        :param dict params: (optional) Pagination params
+        :return: Collection of branches
+        """
+        raw_branches = self.get_endpoint(u"branches"). \
+            all(parent_id=project_id, params=params)
+        return BranchesCollection(raw_branches)
 
-    # def branch(self,
-               # project_id,
-               # branch_id):
-        # u"""Fetches a single branch.
+    def branch(self,
+               project_id,
+               branch_id):
+        u"""Fetches a single branch.
 
-        # :param str project_id: ID of the project
-        # :param branch_id: ID of the branch to fetch
-        # :type branch_id: int or str
-        # :return: Branch model
-        # """
-        # raw_branch = self.get_endpoint(u"branches"). \
-            # find(parent_id=project_id, resource_id=branch_id)
-        # return BranchModel(raw_branch)
+        :param str project_id: ID of the project
+        :param branch_id: ID of the branch to fetch
+        :type branch_id: int or str
+        :return: Branch model
+        """
+        raw_branch = self.get_endpoint(u"branches"). \
+            find(parent_id=project_id, resource_id=branch_id)
+        return BranchModel(raw_branch)
 
     # def create_branch(self,
                       # project_id,
